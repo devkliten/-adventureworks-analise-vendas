@@ -1,5 +1,3 @@
-# -adventureworks-analise-vendas
-
 # AdventureWorks - Análise de Vendas
 <img width="1021" height="576" alt="image" src="https://github.com/user-attachments/assets/ffe047c7-fc10-4755-8523-015d8aa7661c" />
 
