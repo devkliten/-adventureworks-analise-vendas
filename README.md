@@ -3,6 +3,18 @@
 
 O gráfico indica uma loja de materiais esportivos, onde o boné AWC Logo Cap é o produto mais vendido, bem à frente dos demais. O faturamento total é de $123,22 milhões, com crescimento forte entre 2011 e 2013. A queda em 2014 reflete dados parciais — a base cobre apenas até meados do ano — e não representa declínio real de vendas.
 
+## Análises Adicionais (SQL)
+
+ SELECT production_product.Name, 
+ (ListPrice-StandardCost) AS margem_de_lucro
+ FROM production_product
+ WHERE ListPrice !=0 
+ ORDER BY margem_de_lucro DESC LIMIT 10;
+ 
+Entre os 10 produtos com maior margem de lucro, o modelo Mountain-100 ocupa 8 posições, indicando forte concentração de lucratividade nessa linha. Curiosamente, o produto de maior preço de venda (Road-150 Red, $3.578,70) não é o de maior margem — o Mountain-100 Silver, apesar de custar quase $200 a menos, gera mais lucro por unidade. Isso sugere que o Road-150 tem um custo de produção proporcionalmente mais alto, reduzindo sua eficiência de margem.
+
+
+
 
 ## Ferramentas Usadas
 - SQL
