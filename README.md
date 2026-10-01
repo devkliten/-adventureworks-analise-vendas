@@ -9,10 +9,10 @@ O gráfico indica uma loja de materiais esportivos, onde o boné AWC Logo Cap é
 ### Margem de lucro por produto
 
 ​```
-SELECT production_product.Name, (ListPrice-StandardCost) AS margem_de_lucro 
-FROM production_product 
-WHERE ListPrice != 0 
-ORDER BY margem_de_lucro DESC 
+SELECT production_product.Name, (ListPrice-StandardCost) AS margem_de_lucro
+FROM production_product
+WHERE ListPrice != 0
+ORDER BY margem_de_lucro DESC
 LIMIT 10;
 ​```
 
