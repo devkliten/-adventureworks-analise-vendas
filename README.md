@@ -14,6 +14,19 @@ O gráfico indica uma loja de materiais esportivos, onde o boné AWC Logo Cap é
 Entre os 10 produtos com maior margem de lucro, o modelo Mountain-100 ocupa 8 posições, indicando forte concentração de lucratividade nessa linha. Curiosamente, o produto de maior preço de venda (Road-150 Red, $3.578,70) não é o de maior margem — o Mountain-100 Silver, apesar de custar quase $200 a menos, gera mais lucro por unidade. Isso sugere que o Road-150 tem um custo de produção proporcionalmente mais alto, reduzindo sua eficiência de margem.
 
 
+### Tempo médio de envio por território
+```sql
+WITH tempo AS (
+    SELECT TerritoryID, DATEDIFF(ShipDate, OrderDate) AS tempo_medio
+    FROM sales_salesorderheader
+)
+SELECT sales_salesterritory.TerritoryID, sales_salesterritory.Name, AVG(tempo_medio) AS media
+FROM sales_salesterritory 
+INNER JOIN tempo ON tempo.TerritoryID = sales_salesterritory.TerritoryID
+GROUP BY sales_salesterritory.TerritoryID, sales_salesterritory.Name;
+```
+
+O prazo de envio (ShipDate - OrderDate) é de exatamente 8 dias em 99,97% dos pedidos (31.456 de 31.465), independente do território. Essa uniformidade quase absoluta indica que o dado foi gerado com uma regra fixa no banco de demonstração, não uma política real de SLA — não há evidência de variação logística genuína entre regiões nesse dataset.
 
 
 ## Ferramentas Usadas
