@@ -21,6 +21,8 @@ Entre os 10 produtos com maior margem de lucro, o modelo Mountain-100 ocupa 8 po
 
 ### Tempo médio de envio por território
 
+```
+
 WITH tempo AS (
     SELECT TerritoryID, DATEDIFF(ShipDate, OrderDate) AS tempo_medio
     FROM sales_salesorderheader
@@ -29,6 +31,7 @@ SELECT sales_salesterritory.TerritoryID, sales_salesterritory.Name, AVG(tempo_me
 FROM sales_salesterritory 
 INNER JOIN tempo ON tempo.TerritoryID = sales_salesterritory.TerritoryID
 GROUP BY sales_salesterritory.TerritoryID, sales_salesterritory.Name;
+```
 
 O prazo de envio (ShipDate - OrderDate) é de exatamente 8 dias em 99,97% dos pedidos (31.456 de 31.465), independente do território. Essa uniformidade quase absoluta indica que o dado foi gerado com uma regra fixa no banco de demonstração, não uma política real de SLA — não há evidência de variação logística genuína entre regiões nesse dataset.
 
