@@ -5,12 +5,18 @@ O gráfico indica uma loja de materiais esportivos, onde o boné AWC Logo Cap é
 
 ## Análises Adicionais (SQL)
 
- SELECT production_product.Name, 
- (ListPrice-StandardCost) AS margem_de_lucro
- FROM production_product
- WHERE ListPrice !=0 
- ORDER BY margem_de_lucro DESC LIMIT 10;
- 
+## Análises Adicionais (SQL)
+
+### Margem de lucro por produto
+
+​```sql
+SELECT production_product.Name, (ListPrice-StandardCost) AS margem_de_lucro 
+FROM production_product 
+WHERE ListPrice != 0 
+ORDER BY margem_de_lucro DESC 
+LIMIT 10;
+​```
+
 Entre os 10 produtos com maior margem de lucro, o modelo Mountain-100 ocupa 8 posições, indicando forte concentração de lucratividade nessa linha. Curiosamente, o produto de maior preço de venda (Road-150 Red, $3.578,70) não é o de maior margem — o Mountain-100 Silver, apesar de custar quase $200 a menos, gera mais lucro por unidade. Isso sugere que o Road-150 tem um custo de produção proporcionalmente mais alto, reduzindo sua eficiência de margem.
 
 
