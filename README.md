@@ -8,7 +8,7 @@ O gráfico indica uma loja de materiais esportivos, onde o boné AWC Logo Cap é
 
 ### Margem de lucro por produto
 
-​```sql
+​```
 SELECT production_product.Name, (ListPrice-StandardCost) AS margem_de_lucro 
 FROM production_product 
 WHERE ListPrice != 0 
