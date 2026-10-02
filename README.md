@@ -36,6 +36,25 @@ GROUP BY sales_salesterritory.TerritoryID, sales_salesterritory.Name;
 O prazo de envio (ShipDate - OrderDate) é de exatamente 8 dias em 99,97% dos pedidos (31.456 de 31.465), independente do território. Essa uniformidade quase absoluta indica que o dado foi gerado com uma regra fixa no banco de demonstração, não uma política real de SLA — não há evidência de variação logística genuína entre regiões nesse dataset.
 
 
+### Ciclo de recompra do cliente
+
+​```sql
+WITH MEDIA as (
+    SELECT CustomerID, MIN(OrderDate) AS Primeira_compra, 
+           MAX(OrderDate) AS Ultima_compra,
+           COUNT(DISTINCT SalesOrderID) AS Total_pedido, 
+           DATEDIFF(MAX(OrderDate), MIN(OrderDate)) AS Diferença_de_dias
+    FROM sales_salesorderheader 
+    GROUP BY CustomerID
+    HAVING Total_pedido > 1
+)
+SELECT ROUND(AVG(Diferença_de_dias)) AS media 
+FROM MEDIA;
+​```
+
+Entre os clientes que fizeram mais de um pedido, o intervalo médio entre a primeira e a última compra é de 431 dias (cerca de 14 meses). Isso sugere um ciclo de recompra de longo prazo — os clientes recorrentes não compram com frequência alta, mas mantêm relação com a loja por mais de um ano, indicando fidelização de longo prazo em vez de recompra rápida.
+
+
 ## Ferramentas Usadas
 - SQL
 - Power BI
