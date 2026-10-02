@@ -38,7 +38,7 @@ O prazo de envio (ShipDate - OrderDate) é de exatamente 8 dias em 99,97% dos pe
 
 ### Ciclo de recompra do cliente
 
-​```sql
+​```
 WITH MEDIA as (
     SELECT CustomerID, MIN(OrderDate) AS Primeira_compra, 
            MAX(OrderDate) AS Ultima_compra,
